@@ -1,9 +1,15 @@
-import React from 'react';
+import LatestBlogs from "@/components/latestBlogs/LatestBlogs";
+import Banner from "@/components/shared/Banner";
+import React from "react";
 
-const Home = () => {
+const Home = async () => {
+  const res = await fetch("http://localhost:5000/blogs");
+  const blogs = await res.json();
+  console.log(blogs);
   return (
     <div>
-      <h1>Welcome to Next Blog</h1>
+      <Banner />
+      <LatestBlogs blogs={blogs} />
     </div>
   );
 };
