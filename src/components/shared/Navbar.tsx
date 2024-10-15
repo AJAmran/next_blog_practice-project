@@ -1,18 +1,12 @@
+import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   return (
-    <div className="bg-base-100 shadow-md">
-        <div className="navbar container mx-auto">
+    <div className="navbar bg-base-100  border-b  w-[90%] mx-auto">
       <div className="navbar-start">
-        {/* Mobile Menu */}
         <div className="dropdown">
-          <label
-            tabIndex={0}
-            className="btn btn-ghost lg:hidden"
-            aria-label="menu"
-          >
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -27,7 +21,7 @@ const Navbar: React.FC = () => {
                 d="M4 6h16M4 12h8m-8 6h16"
               />
             </svg>
-          </label>
+          </div>
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
@@ -36,51 +30,50 @@ const Navbar: React.FC = () => {
               <Link href="/">Home</Link>
             </li>
             <li>
-              <details>
-                <summary>Categories</summary>
-                <ul className="p-2">
-                  <li>
-                    <Link href="/category1">Category 1</Link>
-                  </li>
-                  <li>
-                    <Link href="/category2">Category 2</Link>
-                  </li>
-                </ul>
-              </details>
+              <Link href="/blogs">Blogs</Link>
             </li>
             <li>
-              <Link href="/about">About</Link>
+              <Link href="/about">About Us</Link>
+            </li>
+            <li>
+              <Link href="/support">Support</Link>
             </li>
           </ul>
         </div>
-        {/* Brand Logo */}
-        <Link href="/" className="btn btn-ghost normal-case text-xl">
-          My Blog
+        <Link href="/" className="btn btn-ghost text-xl">
+          <Image
+            src="https://img.freepik.com/premium-vector/writing-blog-logo-content-logo-template_658057-29.jpg?w=1060"
+            width={30}
+            height={30}
+            alt="brand logo"
+          />
+          Next<span className="text-accent">Blog</span>
         </Link>
       </div>
-      {/* Desktop Menu */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/">Blog</Link>
+            <Link href="/blogs">Blogs</Link>
           </li>
           <li>
             <Link href="/about">About Us</Link>
           </li>
           <li>
-            <Link href="/about">Support</Link>
+            <Link href="/support">Support</Link>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <Link href="/contact" className="btn">
-          Next Blog
+        <Link
+          href="/blogs/create"
+          className="btn btn-accent text-white rounded-full px-5"
+        >
+          Post Blog
         </Link>
       </div>
-    </div>
     </div>
   );
 };
