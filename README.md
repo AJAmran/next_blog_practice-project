@@ -14,5 +14,5 @@ A modern blog platform built with **Next.js (App Router)**, **Redux**, **Tailwin
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/next-blog.git
+   git clone [https://github.com/yourusername/next-blog.git](https://github.com/AJAmran/next_blog_practice-project.git)
    cd next-blog
