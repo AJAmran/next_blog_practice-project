@@ -1,21 +1,9 @@
-import LatestBlogs from "@/components/latestBlogs/LatestBlogs";
-import Banner from "@/components/shared/Banner";
-import React from "react";
-
-const Home = async () => {
-  const res = await fetch("http://localhost:5000/blogs", {
-    next: {
-      revalidate: 30,
-    },
-  });
-  const blogs = await res.json();
-  
+const HomePage = () => {
   return (
     <div>
-      <Banner />
-      <LatestBlogs blogs={blogs} />
+      <h1 className="text-4xl text-center mt-10">Welcome To Home Page</h1>
     </div>
   );
 };
 
-export default Home;
+export default HomePage;

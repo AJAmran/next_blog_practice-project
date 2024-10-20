@@ -1,7 +1,17 @@
-import Image from "next/image";
+"use client"
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 
-const Navbar = () => {
+type UserProps = {
+  user?: {
+    name: string | null | undefined;
+    email: string | null | undefined;
+    image: string | null | undefined;
+  };
+};
+
+const Navbar = ({ session }: { session: UserProps | null }) => {
+  console.log(session);
   return (
     <div className="navbar bg-base-100  border-b  w-[90%] mx-auto">
       <div className="navbar-start">
@@ -29,9 +39,7 @@ const Navbar = () => {
             <li>
               <Link href="/">Home</Link>
             </li>
-            <li>
-              <Link href="/blogs">Blogs</Link>
-            </li>
+
             <li>
               <Link href="/about">About Us</Link>
             </li>
@@ -41,13 +49,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link href="/" className="btn btn-ghost text-xl">
-          <Image
-            src="https://img.freepik.com/premium-vector/writing-blog-logo-content-logo-template_658057-29.jpg?w=1060"
-            width={30}
-            height={30}
-            alt="brand logo"
-          />
-          Next<span className="text-accent">Blog</span>
+          NextAuth
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -55,24 +57,34 @@ const Navbar = () => {
           <li>
             <Link href="/">Home</Link>
           </li>
-          <li>
-            <Link href="/blogs">Blogs</Link>
-          </li>
+
           <li>
             <Link href="/about">About Us</Link>
           </li>
           <li>
             <Link href="/support">Support</Link>
           </li>
+          <li>
+            <Link href="/dashboard">Dashboard</Link>
+          </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <Link
-          href="/blogs/create"
-          className="btn btn-accent text-white rounded-full px-5"
-        >
-          Post Blog
-        </Link>
+        {session?.user ? (
+          <button
+            onClick={() => signOut()}
+            className="btn btn-error btn-outline text-white rounded-full px-5"
+          >
+            Logout
+          </button>
+        ) : (
+          <Link
+            href="/login"
+            className="btn btn-accent btn-outline text-white rounded-full px-5"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
